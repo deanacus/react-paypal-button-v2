@@ -1,5 +1,5 @@
 {
-    "name": "react-paypal-button-v2",
+    "name": "@deanacus/react-paypal-button-v2",
     "version": "2.6.2",
     "description": "An easy and simple to use React button component to implement PayPal's Checkout with Smart Payment Buttons V2 (Version 2).",
     "keywords": [
@@ -24,16 +24,16 @@
     ],
     "homepage": "https://luehangs.site/lue_hang/projects/react-paypal-button-v2",
     "author": {
-        "name": "Lue Hang",
-        "email": "lue_hang@hotmail.com",
-        "url": "https://www.luehangs.site"
+        "name": "Dean Harris",
+        "email": "dean@harris.tc",
+        "url": "https://www.deanacus.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Luehang/react-paypal-button-v2"
+        "url": "https://github.com/deanacus/react-paypal-button-v2"
     },
     "bugs": {
-        "url": "https://github.com/Luehang/react-paypal-button-v2/issues"
+        "url": "https://github.com/deanacus/react-paypal-button-v2/issues"
     },
     "directories": {
         "example": "./example",
@@ -47,8 +47,8 @@
         "rimraf": "^3.0.0"
     },
     "peerDependencies": {
-        "react": "^0.14.6 || 15.x.x || 16.x.x",
-        "react-dom": "^0.14.6 || 15.x.x || 16.x.x"
+        "react": "16.x.x",
+        "react-dom": "16.x.x"
     },
     "devDependencies": {
         "@babel/cli": "^7.5.5",
@@ -62,10 +62,10 @@
         "@types/enzyme": "^3.10.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
         "@types/jest": "^23.3.14",
-        "@types/node": "^11.9.4",
+        "@types/node": "^14.14.3",
         "@types/react": "^16.9.2",
         "@types/react-dom": "^16.8.5",
-        "@types/webpack-env": "^1.14.0",
+        "@types/webpack-env": "^1.15.3",
         "@typescript-eslint/eslint-plugin": "1.4.0",
         "@typescript-eslint/parser": "1.4.0",
         "babel-core": "^6.26.3",
@@ -100,12 +100,10 @@
         "build": "rimraf dist lib && npm run build:types && npm run build:js",
         "build:types": "tsc --emitDeclarationOnly",
         "build:js": "babel src --out-dir lib --extensions \".tsx\" --ignore \"**/*.test.tsx\" --source-maps inline",
-        "build:bundle": "webpack-cli --config ./webpack.config.js --mode production",
         "start": "webpack-dev-server --config ./example/webpack.config.js --mode development --open --hot",
-        "lint": "./node_modules/.bin/eslint src/ example/",
+        "lint": "./node_modules/.bin/eslint ./src/* ./example/*",
         "test": "jest --watchAll",
-        "test:once": "jest",
-        "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+        "test:once": "jest"
     },
     "license": "MIT"
 }

@@ -7,38 +7,40 @@ declare global {
 }
 
 export interface PayPalButtonProps {
-    amount?: number|string,
-    currency?: number|string,
-    shippingPreference?: "NO_SHIPPING" | "GET_FROM_FILE" | "SET_PROVIDED_ADDRESS",
-    onSuccess?: Function,
-    catchError?: Function,
-    onError?: Function,
-    createOrder?: Function,
-    createSubscription?: Function,
-    onApprove?: Function,
-    style?: object,
-    options?: PaypalOptions,
-    onButtonReady?: Function,
+    amount?: number|string;
+    currency?: number|string;
+    shippingPreference?: "NO_SHIPPING" | "GET_FROM_FILE" | "SET_PROVIDED_ADDRESS";
+    onSuccess?: Function;
+    catchError?: Function;
+    onError?: Function;
+    createOrder?: Function;
+    createSubscription?: Function;
+    onApprove?: Function;
+    style?: object;
+    options?: PaypalOptions;
+    onButtonReady?: Function;
+    onClick?: Function;
+    onCancel?: Function;
 }
 
 export interface PayPalButtonState {
-    isSdkReady: boolean
+    isSdkReady: boolean;
 }
 
 export interface PaypalOptions {
-    clientId?: string,
-    merchantId?: string,
-    currency?: number|string,
-    intent?: string,
-    commit?: boolean|string,
-    vault?: boolean|string,
-    component?: string,
-    disableFunding?: string,
-    disableCard?: string,
-    integrationDate?: string,
-    locale?: string,
-    buyerCountry?: string,
-    debug?: boolean|string
+    clientId?: string;
+    merchantId?: string;
+    currency?: number|string;
+    intent?: string;
+    commit?: boolean|string;
+    vault?: boolean|string;
+    component?: string;
+    disableFunding?: string;
+    disableCard?: string;
+    integrationDate?: string;
+    locale?: string;
+    buyerCountry?: string;
+    debug?: boolean|string;
 }
 
 class PayPalButton extends React.Component<PayPalButtonProps, PayPalButtonState> {
@@ -55,6 +57,8 @@ class PayPalButton extends React.Component<PayPalButtonProps, PayPalButtonState>
         onSuccess: PropTypes.func,
         catchError: PropTypes.func,
         onError: PropTypes.func,
+        onCancel: PropTypes.func,
+        onClick: PropTypes.func,
         createOrder: PropTypes.func,
         createSubscription: PropTypes.func,
         onApprove: PropTypes.func,
@@ -129,21 +133,21 @@ class PayPalButton extends React.Component<PayPalButtonProps, PayPalButtonState>
         const { currency, options, amount, shippingPreference } = this.props;
 
         return actions.order.create({
-          purchase_units: [
-            {
-              amount: {
-                currency_code: currency
-                  ? currency
-                  : options && options.currency
-                  ? options.currency
-                  : "USD",
-                value: amount.toString()
-              }
+            purchase_units: [
+                {
+                    amount: {
+                        currency_code: currency
+                            ? currency
+                            : options && options.currency
+                                ? options.currency
+                                : "USD",
+                        value: amount.toString()
+                    }
+                }
+            ],
+            application_context: {
+                shipping_preference: shippingPreference
             }
-          ],
-          application_context: {
-            shipping_preference: shippingPreference
-          }
         });
     }
 
@@ -168,6 +172,8 @@ class PayPalButton extends React.Component<PayPalButtonProps, PayPalButtonState>
             onSuccess,
             createOrder,
             createSubscription,
+            onClick,
+            onCancel,
             onApprove,
             style,
         } = this.props;
@@ -200,6 +206,8 @@ class PayPalButton extends React.Component<PayPalButtonProps, PayPalButtonState>
                         ? (data: any, actions: any) => this.onApprove(data, actions)
                         : (data: any, actions: any) => onApprove(data, actions)
                 }
+                onClick={onClick}
+                onCancel={onCancel}
                 style={style}
             />
         );
@@ -229,7 +237,7 @@ class PayPalButton extends React.Component<PayPalButtonProps, PayPalButtonState>
         script.onerror = () => {
             throw new Error("Paypal SDK could not be loaded.");
         };
-    
+
         document.body.appendChild(script);
     }
 }
