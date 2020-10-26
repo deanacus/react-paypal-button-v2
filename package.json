@@ -1,6 +1,6 @@
 {
-    "name": "@deanacus/react-paypal-button-v2",
-    "version": "2.6.2",
+    "name": "@repeatgg/react-paypal-button-v2",
+    "version": "2.7.0",
     "description": "An easy and simple to use React button component to implement PayPal's Checkout with Smart Payment Buttons V2 (Version 2).",
     "keywords": [
         "react-paypal-button-v2",
@@ -16,30 +16,26 @@
         "react-paypal",
         "react-component",
         "checkout-buttons",
-        "paypal buttons",
-        "LueHsoft",
-        "LueH LABS",
-        "Lue Hang",
-        "luehang"
+        "paypal buttons"
     ],
-    "homepage": "https://luehangs.site/lue_hang/projects/react-paypal-button-v2",
+    "homepage": "https://github.com/repeatgg/react-paypal-button-v2",
     "author": {
-        "name": "Dean Harris",
-        "email": "dean@harris.tc",
-        "url": "https://www.deanacus.com"
+        "name": "Repeat.gg",
+        "url": "https://repeat.gg"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/deanacus/react-paypal-button-v2"
+        "url": "https://github.com/repeatgg/react-paypal-button-v2"
     },
     "bugs": {
-        "url": "https://github.com/deanacus/react-paypal-button-v2/issues"
+        "url": "https://github.com/repeatgg/react-paypal-button-v2/issues"
     },
     "directories": {
         "example": "./example",
         "lib": "./lib",
         "src": "./src"
     },
+    "private": false,
     "main": "./lib/index.js",
     "types": "dist/index.d.ts",
     "dependencies": {
